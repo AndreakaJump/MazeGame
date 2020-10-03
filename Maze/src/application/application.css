@@ -1,0 +1,78 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+
+.background {
+	-fx-background-color:#222222;
+}
+
+.subBackground {
+	-fx-background-color:#111111;
+	-fx-border-color: #000000;
+	-fx-border-radius: 8px;
+	-fx-border-width: 1px;
+}
+
+.title {
+	-fx-font-family: "Consolas";
+    -fx-font-size: 200px;
+    -fx-fill: #cc592a;
+}
+.smallerTitle {
+	-fx-font-family: "Consolas";
+    -fx-font-size: 50px;
+    -fx-fill: #1290c3;
+	
+}
+.smallTitleOrange {
+	-fx-font-family: "Consolas";
+    -fx-font-size: 25px;
+    -fx-fill: #cc592a;
+}
+.slider .track {
+    -fx-pref-height:20;
+    -fx-background-color:#444444;
+}
+
+.slider .thumb {
+    -fx-pref-height: 30;
+    -fx-pref-width: 30;
+    -fx-background-color:#333333, #5698ff;
+}
+
+.bigBtn {
+	-fx-background-color:#333333, #222222;
+	
+	-fx-text-fill: #1eb540;
+	-fx-font-size: 40px;
+	-fx-font-family: "Consolas";
+	-fx-padding: 10 30 20 30;
+	-fx-background-insets: 0,0 0 8 0, 0 0 6 0, 0 0 7 0;
+    -fx-effect: dropshadow( gaussian , rgba(.5,.5,.5,1) , 4,0,0,1 );
+}
+.bigBtn:hover {
+	-fx-background-color:#076621, #1eb540;
+	
+	-fx-text-fill: #222222;
+	
+}
+.mdBtn {
+	-fx-background-color:#333333, #222222;
+	-fx-text-fill: #1290c3;
+	-fx-font-size: 25px;
+	-fx-font-family: "Consolas";
+	-fx-padding: 10 30 20 30;
+	-fx-background-insets: 0,0 0 8 0, 0 0 6 0, 0 0 7 0;
+    -fx-effect: dropshadow( gaussian , rgba(.5,.5,.5,1) , 4,0,0,1 );
+}
+.mdBtn:hover {
+	-fx-background-color:#0280d3, #1290c3;
+	
+	-fx-text-fill: #222222;
+	
+}
+GridPane {
+	-fx-border-color: #cc592a;
+	-fx-border-width: 4px;
+}
+.noOutline {
+	-fx-border-width: 0px;
+}

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="background" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.SettingPgController">
+   <children>
+      <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" styleClass="subBackground">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="smallerTitle" text="Rules" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="smallTitleOrange" text="Use the arrow keys on your keyboard or the arrow buttons on the screen to move through the maze until you reach the green square." textAlignment="CENTER" wrappingWidth="650.0" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="smallerTitle" text="Settings" />
+            <GridPane alignment="TOP_RIGHT" nodeOrientation="LEFT_TO_RIGHT">
+              <columnConstraints>
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Slider fx:id="slider" blockIncrement="2.0" majorTickUnit="4.0" max="30.0" min="8.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="12.0" GridPane.columnIndex="1" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="smallTitleOrange" text="Grid Size: " textAlignment="RIGHT" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="smallTitleOrange" text="Maze Generation:" textAlignment="RIGHT" GridPane.rowIndex="1" />
+                  <ComboBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+               </children>
+            </GridPane>
+            <Button mnemonicParsing="false" onMouseClicked="#playClicked" styleClass="bigBtn" text="Play" />
+         </children>
+      </VBox>
+   </children>
+</VBox>
