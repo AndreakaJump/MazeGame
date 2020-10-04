@@ -32,24 +32,14 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
-public class GamePgController implements Initializable{
+public class GamePgController{
 
-    @FXML
-    private StackPane mazeStackPane;
-    @FXML
-    private Button resetBtn;
-
-    @FXML
-    private Button rightBtn;
-
-    @FXML
-    private Button leftBtn;
-
-    @FXML
-    private Button upBtn;
-
-    @FXML
-    private Button downBtn;
+    @FXML private StackPane mazeStackPane;
+    @FXML private Button resetBtn;
+    @FXML private Button rightBtn;
+    @FXML private Button leftBtn;
+    @FXML private Button upBtn;
+    @FXML private Button downBtn;
 
     
     int gridMaxHW =450;
@@ -57,6 +47,7 @@ public class GamePgController implements Initializable{
 	int gridWidth;
 	int rows;
 	int columns;
+	boolean gameWon;
 	
 	GridPane gp;
 	Grid grid;
@@ -66,18 +57,8 @@ public class GamePgController implements Initializable{
 	Distance distance2;
 	Cell goalCell;     
 
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		/*
-		FXMLLoader loader = new FXMLLoader();
-		SettingPgController controller = loader.getController(); 
-		rows = controller.getSlider();
-		columns = rows;
-		*/
-		
-	}
-	
 	public void getData(int i) {
+		gameWon = false;
 		System.out.println("gothere");
 		rows = i;
 		columns= i;
@@ -87,6 +68,7 @@ public class GamePgController implements Initializable{
 	
 	@FXML
     void resetGrid(MouseEvent event) {
+		gameWon= false;
 		setUpGrid();
 		setStartAndEnd();	
     }
@@ -108,6 +90,8 @@ public class GamePgController implements Initializable{
 	}
 
 	private void setUpGrid() {
+		int realWidth = gridWidth/columns;
+		realWidth *= columns;
 		System.out.println("gothere2");
 		if(rows>columns) {
 			gridHeight = gridMaxHW;
@@ -127,7 +111,7 @@ public class GamePgController implements Initializable{
 		
 		distance = new Distance(grid);
 		distance2 = new Distance(distance.getMaxCell(), grid);
-		
+		gp.setMaxWidth(realWidth);
 		
 		
 		for (int i = 0; i < rows; i++) {
@@ -145,12 +129,12 @@ public class GamePgController implements Initializable{
 				
 				ImageView img = new ImageView();
 				try {
-					img.setImage(new Image(new FileInputStream(grid.getCell(i, j).whatPng())));
+					img.setImage(new Image(new FileInputStream("Textures/"+grid.getCell(i, j).whatPng())));
 				} catch (FileNotFoundException e) {
 					e.printStackTrace();
 				}
-				img.setFitWidth(gridWidth/columns);
-				img.setFitHeight(gridHeight/rows);
+				img.setFitWidth((gridWidth/columns)+1);
+				img.setFitHeight((gridHeight/rows)+1);
 				gp.add(img, j, i);
 			}
 		}
@@ -194,8 +178,8 @@ public class GamePgController implements Initializable{
 		
 		
 		r = new Rectangle();
-		r.setHeight((gridHeight/rows)-((gridHeight/rows)/10));
-		r.setWidth((gridWidth/columns)-((gridWidth/columns)/10));
+		r.setHeight((gridHeight/rows)-((gridHeight/rows)/6));
+		r.setWidth((gridWidth/columns)-((gridWidth/columns)/6));
 		r.setFill(Color.web("00ee00"));
 		System.out.println(grid.getGoalCell().getRow() + " " + grid.getGoalCell().getColumn());
 		gp.add(r, grid.getGoalCell().getColumn(), grid.getGoalCell().getRow());
@@ -208,53 +192,66 @@ public class GamePgController implements Initializable{
 	
 	@FXML
     void down(ActionEvent event) {
-    	if(grid.moveCell("down")) {
-    		gp.getChildren().remove(c);
-    		gp.add(c, grid.getCurrentCell().getColumn(), grid.getCurrentCell().getRow());
-    	}
-    	if(grid.getCurrentCell()==grid.getGoalCell()) {
-    		winningSequence();
-    	}
+		if(!gameWon) {
+		
+			if(grid.moveCell("down")) {
+	    		gp.getChildren().remove(c);
+	    		gp.add(c, grid.getCurrentCell().getColumn(), grid.getCurrentCell().getRow());
+	    	}
+	    	if(grid.getCurrentCell()==grid.getGoalCell()) {
+	    		winningSequence();
+	    	}
+		}
     	
     }
 
     @FXML
     void left(ActionEvent event) {
-    	if(grid.moveCell("left")) {
-    		gp.getChildren().remove(c);
-    		gp.add(c, grid.getCurrentCell().getColumn(), grid.getCurrentCell().getRow());
+
+    	if(!gameWon) {
+    		if(grid.moveCell("left")) {
+        		gp.getChildren().remove(c);
+        		gp.add(c, grid.getCurrentCell().getColumn(), grid.getCurrentCell().getRow());
+        	}
+        	if(grid.getCurrentCell()==grid.getGoalCell()) {
+        		winningSequence();
+        	}
     	}
-    	if(grid.getCurrentCell()==grid.getGoalCell()) {
-    		winningSequence();
-    	}
+    	
     }
 
     @FXML
     void right(ActionEvent event) {
-    	if(grid.moveCell("right")) {
-    		gp.getChildren().remove(c);
-    		gp.add(c, grid.getCurrentCell().getColumn(), grid.getCurrentCell().getRow());
+    	if(!gameWon) {
+    		if(grid.moveCell("right")) {
+        		gp.getChildren().remove(c);
+        		gp.add(c, grid.getCurrentCell().getColumn(), grid.getCurrentCell().getRow());
+        	
+        	}
+        	if(grid.getCurrentCell()==grid.getGoalCell()) {
+        		winningSequence();
+        	}
+    	}
     	
-    	}
-    	if(grid.getCurrentCell()==grid.getGoalCell()) {
-    		winningSequence();
-    	}
 
     }
     
     @FXML
     void up(ActionEvent event) {
     	//System.out.println("upevent");
-    	if(grid.moveCell("up")) {
-    		gp.getChildren().remove(c);
-    		gp.add(c, grid.getCurrentCell().getColumn(), grid.getCurrentCell().getRow());
-    	}
-    	if(grid.getCurrentCell()==grid.getGoalCell()) {
-    		winningSequence();
+    	if(!gameWon) {
+    		if(grid.moveCell("up")) {
+        		gp.getChildren().remove(c);
+        		gp.add(c, grid.getCurrentCell().getColumn(), grid.getCurrentCell().getRow());
+        	}
+        	if(grid.getCurrentCell()==grid.getGoalCell()) {
+        		winningSequence();
+        	}
     	}
     }
     
     private void winningSequence() {
+    	gameWon=true;
 		System.out.println("You won!");
 		//resetBtn.setDisable(false);
 		

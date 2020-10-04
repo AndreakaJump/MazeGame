@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -13,27 +13,38 @@
    <children>
       <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" styleClass="subBackground">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="smallerTitle" text="Rules" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="smallTitleOrange" text="Use the arrow keys on your keyboard or the arrow buttons on the screen to move through the maze until you reach the green square." textAlignment="CENTER" wrappingWidth="650.0" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="smallerTitle" text="Settings" />
-            <GridPane alignment="TOP_RIGHT" nodeOrientation="LEFT_TO_RIGHT">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="smallerTitle" text="Rules">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin></Text>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="smallTitleOrange" text="Use the arrow keys on your keyboard or the arrow buttons on the screen to move through the maze until you reach the green square." textAlignment="CENTER" wrappingWidth="650.0">
+               <VBox.margin>
+                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+               </VBox.margin></Text>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="smallerTitle" text="Settings">
+               <VBox.margin>
+                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+               </VBox.margin></Text>
+            <GridPane alignment="TOP_RIGHT" nodeOrientation="LEFT_TO_RIGHT" styleClass="noOutline">
               <columnConstraints>
                 <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
                   <Slider fx:id="slider" blockIncrement="2.0" majorTickUnit="4.0" max="30.0" min="8.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="12.0" GridPane.columnIndex="1" />
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="smallTitleOrange" text="Grid Size: " textAlignment="RIGHT" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="smallTitleOrange" text="Maze Generation:" textAlignment="RIGHT" GridPane.rowIndex="1" />
-                  <ComboBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                </children>
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
             </GridPane>
-            <Button mnemonicParsing="false" onMouseClicked="#playClicked" styleClass="bigBtn" text="Play" />
+            <Button mnemonicParsing="false" onMouseClicked="#playClicked" styleClass="bigBtn" text="Play">
+               <VBox.margin>
+                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+               </VBox.margin></Button>
          </children>
       </VBox>
    </children>
