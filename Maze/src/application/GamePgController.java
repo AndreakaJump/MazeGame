@@ -3,14 +3,11 @@ package application;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;
@@ -30,6 +27,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class GamePgController{
@@ -40,6 +38,7 @@ public class GamePgController{
     @FXML private Button leftBtn;
     @FXML private Button upBtn;
     @FXML private Button downBtn;
+    @FXML private Text messageText;
 
     
     int gridMaxHW =450;
@@ -59,7 +58,6 @@ public class GamePgController{
 
 	public void getData(int i) {
 		gameWon = false;
-		System.out.println("gothere");
 		rows = i;
 		columns= i;
 		setUpGrid();
@@ -68,6 +66,7 @@ public class GamePgController{
 	
 	@FXML
     void resetGrid(MouseEvent event) {
+		messageText.setText("Get to the green square!");
 		gameWon= false;
 		setUpGrid();
 		setStartAndEnd();	
@@ -92,7 +91,6 @@ public class GamePgController{
 	private void setUpGrid() {
 		int realWidth = gridWidth/columns;
 		realWidth *= columns;
-		System.out.println("gothere2");
 		if(rows>columns) {
 			gridHeight = gridMaxHW;
 			gridWidth = (gridMaxHW/rows)*columns;
@@ -144,7 +142,6 @@ public class GamePgController{
 		c= new Circle();
 		c.setFill(Color.web("1290c3"));
 		c.setRadius(((gridHeight/rows)/2)-((gridHeight/rows)/20));
-		System.out.println(grid.getCurrentCell().getRow() + " " + grid.getCurrentCell().getColumn());
 		gp.add(c, grid.getCurrentCell().getColumn(), grid.getCurrentCell().getRow());
 		GridPane.setValignment((Node)c, VPos.CENTER);
 		GridPane.setHalignment((Node)c, HPos.CENTER);
@@ -158,19 +155,15 @@ public class GamePgController{
 	            if (ke.getCode().equals(KeyCode.UP))
 	            {
 	            	upBtn.fire();
-	                System.out.println("UP");
 	            } else if (ke.getCode().equals(KeyCode.DOWN))
 	            {
 	            	downBtn.fire();
-	                System.out.println("down");
 	            } else if (ke.getCode().equals(KeyCode.RIGHT))
 	            {
 	            	rightBtn.fire();
-	                System.out.println("right");
 	            } else if (ke.getCode().equals(KeyCode.LEFT))
 	            {
 	            	leftBtn.fire();
-	                System.out.println("Left");
 	            }
 	        }
 	        
@@ -181,7 +174,6 @@ public class GamePgController{
 		r.setHeight((gridHeight/rows)-((gridHeight/rows)/6));
 		r.setWidth((gridWidth/columns)-((gridWidth/columns)/6));
 		r.setFill(Color.web("00ee00"));
-		System.out.println(grid.getGoalCell().getRow() + " " + grid.getGoalCell().getColumn());
 		gp.add(r, grid.getGoalCell().getColumn(), grid.getGoalCell().getRow());
 		GridPane.setValignment((Node)r, VPos.CENTER);
 		GridPane.setHalignment((Node)r, HPos.CENTER);
@@ -238,7 +230,6 @@ public class GamePgController{
     
     @FXML
     void up(ActionEvent event) {
-    	//System.out.println("upevent");
     	if(!gameWon) {
     		if(grid.moveCell("up")) {
         		gp.getChildren().remove(c);
@@ -252,7 +243,7 @@ public class GamePgController{
     
     private void winningSequence() {
     	gameWon=true;
-		System.out.println("You won!");
+    	messageText.setText("You Won! Reset to play again.");
 		//resetBtn.setDisable(false);
 		
 	}

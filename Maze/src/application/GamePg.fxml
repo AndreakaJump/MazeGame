@@ -10,6 +10,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
 
 <VBox alignment="CENTER" prefHeight="600.0" prefWidth="800.0" styleClass="background" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.GamePgController">
    <children>
@@ -74,6 +75,7 @@
                         </Button>
                         <Button focusTraversable="false" layoutX="4.0" layoutY="250.0" mnemonicParsing="false" onMouseClicked="#settingClicked" styleClass="mdBtn" text="Settings" />
                         <Button fx:id="resetBtn" focusTraversable="false" layoutX="24.0" layoutY="176.0" mnemonicParsing="false" onMouseClicked="#resetGrid" styleClass="mdBtn" text="Reset" />
+                        <Text fx:id="messageText" layoutX="14.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="smallTitleOrange" text="Get to the green square!" textAlignment="CENTER" wrappingWidth="150.0" />
                      </children>
                   </AnchorPane>
                </children>

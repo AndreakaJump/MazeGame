@@ -33,7 +33,6 @@ public class Distance {
 	}
 	
 	Distance(Cell c, Grid grid){
-		System.out.println("in constructor");
 		this.grid = grid;
 		root = c;
 		map = new HashMap<>();
@@ -43,9 +42,7 @@ public class Distance {
 		cellsInMap = 1;
 		distance = 1;
 		lastVisited = new ArrayList<>();
-		System.out.println(c);
 		lastVisited.add(c);
-		System.out.println(lastVisited);
 		iterateGrid();
 		grid.setCurrentCell(root);
 		grid.setGoalCell(lastCell);
@@ -54,28 +51,15 @@ public class Distance {
 	
 	
 	void iterateGrid() {
-		System.out.println("CellsinMapabove" + cellsInMap);
 		while(cellsInMap!=numOfCells) {
-			System.out.println("CellsinMapin" + cellsInMap);
-			System.out.println("#" + numOfCells);
-			System.out.println(cellsInMap!=numOfCells);
 			for(int i = 0; i < lastVisited.size(); i++) {
-				System.out.println("CellsinMapinfor" + cellsInMap);
-				//System.out.println(lastVisited);
-				//System.out.println(lastVisited.size());
-				//System.out.println(i);
-				//System.out.println(lastVisited.get(i));
 				List<Cell> linked = lastVisited.get(i).getLinkedCells();
-				//System.out.println("LV" + lastVisited.get(i));
 				for(int j = 0; j<linked.size(); j++) {
-					System.out.println("j" + j);
 					if(!map.containsKey(linked.get(j))){
 						frontier.add(linked.get(j));
 						setMap(linked.get(j), distance);
 						cellsInMap++;
-						System.out.println(linked.get(j) + " D:" + distance);
-						
-					} else {System.out.println("nope");}
+					}
 				}
 			}
 			if(frontier.size()!=0) {
@@ -85,11 +69,6 @@ public class Distance {
 			lastVisited.addAll(frontier);
 			frontier.clear();
 			distance++;
-			
-			System.out.println("LV"+lastVisited);
-			System.out.println(lastVisited.get(0));
-			System.out.println("CellsinMap" + cellsInMap);
-			System.out.println("#" + numOfCells);
 			
 		}
 		
@@ -111,7 +90,6 @@ public class Distance {
 		return distance;
 	}
 	public Cell getMaxCell() {
-		System.out.println("In max cell");
 		return lastCell;
 	}
 
