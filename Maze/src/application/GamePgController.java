@@ -131,8 +131,8 @@ public class GamePgController{
 				} catch (FileNotFoundException e) {
 					e.printStackTrace();
 				}
-				img.setFitWidth((gridWidth/columns)+1);
-				img.setFitHeight((gridHeight/rows)+1);
+				img.setFitWidth((gridWidth/columns)+.5);
+				img.setFitHeight((gridHeight/rows)+.5);
 				gp.add(img, j, i);
 			}
 		}
