@@ -12,22 +12,23 @@ import javafx.stage.Stage;
 
 public class HomePgController {
 
-
-    @FXML
-    void playClicked(MouseEvent event) {
-    	Parent parent = null;
+	@FXML
+	void playClicked(MouseEvent event) {
+		Parent parent = null;
 		try {
-			parent = FXMLLoader.load(getClass().getResource("/application/SettingPg.fxml"));
+			parent = FXMLLoader.load(
+					getClass().getResource("/application/SettingPg.fxml"));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-    	Scene scene = new Scene(parent);
-    	scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-    	Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-    	window.setScene(scene);
-    	window.show();
+		Scene scene = new Scene(parent);
+		scene.getStylesheets().add(
+				getClass().getResource("application.css").toExternalForm());
+		Stage window = (Stage) ((Node) event.getSource()).getScene()
+				.getWindow();
+		window.setScene(scene);
+		window.show();
 
-    }
+	}
 
 }
